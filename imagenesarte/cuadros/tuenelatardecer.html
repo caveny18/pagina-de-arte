@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tú en el atardecer — Obra de colección</title>
+
+  <!-- Tipos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <!-- CSS inmersivo -->
+  <link rel="stylesheet" href="STYLES/styles.css" />
+
+  <!-- Metas para el JS -->
+  <meta name="piece-name" content="Tú en el atardecer">
+  <meta name="piece-category" content="Óleos">
+  <meta name="piece-edition" content="1/20">
+</head>
+<body>
+
+  <!-- =============== HERO (video corto) =============== -->
+  <header class="hero" aria-label="Presentación de la obra">
+    <video class="hero__video"
+           src="mar.mov"
+           poster="assets/hero-atardecer-poster.jpg"
+           autoplay muted loop playsinline></video>
+    <div class="hero__veil"></div>
+    <div class="hero__copy">
+      <h1 class="hero__title">Tú en el atardecer</h1>
+      <p class="hero__subtitle">Óleo sobre lienzo · 100 × 78 cm · 2025</p>
+      <button class="btn btn--ghost" id="openAccess">Conocer más de la historia</button>
+    </div>
+    <button class="audio-toggle" id="audioToggle" aria-pressed="false" aria-label="Activar/pausar audio">♫</button>
+  </header>
+
+  <main>
+    <!-- ============ Inspiración (público) ============ -->
+    <section class="section story-min">
+      <h2>Inspiración</h2>
+      <p>
+        A veces tenemos alas para volar, pero el mundo parece tan grande que
+        olvidamos nuestra importancia en la pintura de nuestras propias vidas.
+        Este cuadro es una invitación a reconocerte en la luz de la tarde:
+        quieta, honesta, suficiente.
+      </p>
+      <p><strong>Técnica:</strong> Óleo sobre lienzo. <strong>Medidas:</strong> 100 × 78 cm.</p>
+
+      <div class="cta-row">
+        <button class="btn btn--primary" type="button" data-pedir data-type="obra">Comprar obra</button>
+        <button class="btn btn--ghost"   type="button" data-pedir data-type="gift">Comprar tarjeta de regalo</button>
+        <button class="btn btn--link"    type="button" id="openAccessSecondary">Conocer más de la historia</button>
+      </div>
+      <small class="hint">
+        La tarjeta de regalo desbloquea la <em>historia completa</em> y el proceso de pintado de esta pieza.
+      </small>
+    </section>
+
+    <!-- ======= CONTENIDO EXCLUSIVO (borroso hasta ingresar el código) ======= -->
+    <section id="exclusive" class="exclusive" hidden>
+      <!-- Video del proceso -->
+      <section class="section wide" aria-label="Video del artista">
+        <h2 data-reveal>Proceso del artista</h2>
+        <video class="player" controls preload="metadata" poster="assets/hero-atardecer-poster.jpg">
+          <source src="assets/process-atardecer.mp4" type="video/mp4">
+        </video>
+      </section>
+
+      <!-- Historia extendida (reflexiva) -->
+      <section class="section story" aria-label="Historia completa">
+        <h2 data-reveal>Historia completa</h2>
+        <p data-reveal>
+          “Tú en el atardecer” nació de una imagen que vuelve cuando anochece:
+          un cielo enorme, casi inmóvil, y una figura pequeña que, sin embargo,
+          sostiene todo el horizonte. Pinté con tiempos lentos. Las primeras
+          capas fueron grises cálidos, veladuras suaves que dejaban pasar
+          la respiración del lienzo. Luego llegaron los ocres y los ámbares
+          como brasas: no quería un espectáculo de color, sino un
+          <em>recordatorio</em> de luz.
+        </p>
+        <p data-reveal>
+          Me interesaba esa paradoja: sentirte diminuta frente al mundo y,
+          al mismo tiempo, comprender que el mundo no existiría igual sin
+          tu mirada. Por eso hay zonas deliberadamente difusas y otras
+          resueltas con una línea firme, como si la tarde te dibujara de
+          nuevo, diciendo: “aquí estás”.
+        </p>
+        <p data-reveal>
+          Cuando firmé, pensé en todas las veces que quise renunciar a mis
+          alas por creer que el vuelo de otros era más importante. Esta obra
+          es un pequeño acto de justicia: tu nombre escrito en el color del
+          día que termina, la certeza de que tu presencia modifica la luz.
+        </p>
+      </section>
+
+      <!-- Ficha técnica -->
+      <section class="section facts" aria-label="Ficha técnica">
+        <h2 data-reveal>Ficha técnica</h2>
+        <ul class="facts__list">
+          <li data-reveal><strong>Soporte:</strong> Lienzo de algodón, 100 × 78 cm</li>
+          <li data-reveal><strong>Imprimatura:</strong> Gris cálido</li>
+          <li data-reveal><strong>Paleta:</strong> Blancos y negros con grises cálidos; ocres y ámbar en veladuras</li>
+          <li data-reveal><strong>Herramientas:</strong> Pinceles planos y redondos; veladuras con médium</li>
+          <li data-reveal><strong>Textura:</strong> Suave en cielo, acentos más densos en el plano cercano</li>
+          <li data-reveal><strong>Barniz:</strong> Satín</li>
+          <li data-reveal><strong>Tiempo de elaboración:</strong> 3–4 semanas</li>
+          <li data-reveal><strong>Firma:</strong> Reverso + certificado digital</li>
+        </ul>
+      </section>
+
+      <!-- Galería HD -->
+      <section class="section gallery" aria-label="Galería en alta resolución">
+        <h2 data-reveal>Galería</h2>
+        <div class="gallery__grid">
+          <a href="assets/atardecer-hd-1.jpg" class="gl" data-reveal><img src="assets/atardecer-hd-1.jpg" alt="Detalle 1" loading="lazy" decoding="async"></a>
+          <a href="assets/atardecer-hd-2.jpg" class="gl" data-reveal><img src="assets/atardecer-hd-2.jpg" alt="Detalle 2" loading="lazy" decoding="async"></a>
+          <a href="assets/atardecer-hd-3.jpg" class="gl" data-reveal><img src="assets/atardecer-hd-3.jpg" alt="Detalle 3" loading="lazy" decoding="async"></a>
+          <a href="assets/atardecer-hd-4.jpg" class="gl" data-reveal><img src="assets/atardecer-hd-4.jpg" alt="Detalle 4" loading="lazy" decoding="async"></a>
+          <a href="assets/atardecer-hd-5.jpg" class="gl" data-reveal><img src="assets/atardecer-hd-5.jpg" alt="Detalle 5" loading="lazy" decoding="async"></a>
+          <a href="assets/atardecer-hd-6.jpg" class="gl" data-reveal><img src="assets/atardecer-hd-6.jpg" alt="Detalle 6" loading="lazy" decoding="async"></a>
+        </div>
+      </section>
+
+      <!-- Certificado -->
+      <section class="section certificate" aria-label="Certificado digital">
+        <h2 data-reveal>Certificado digital</h2>
+        <div class="cert" data-reveal>
+          <div class="cert__border"></div>
+          <div class="cert__content">
+            <h3>Tú en el atardecer</h3>
+            <p>ID de pieza: <span id="pieceId">—</span></p>
+            <p>Número de colección: <strong id="edition2">—</strong></p>
+            <p class="edition" id="edition">Pieza #1 de 20</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Audio (opcional) -->
+      <audio id="audioLoop" src="assets/audio-loop.mp3" loop preload="none"></audio>
+      <audio id="audioFx"   src="assets/fire.wav"      loop preload="none"></audio>
+    </section>
+  </main>
+
+  <!-- ============ Modal de acceso (código) ============ -->
+  <dialog id="accessModal" class="modal" aria-labelledby="accessTitle">
+    <form method="dialog" class="modal__dialog" id="accessForm">
+      <button class="modal__close" aria-label="Cerrar">×</button>
+      <h3 id="accessTitle">Acceso exclusivo</h3>
+      <p>Ingresa el código para desbloquear la historia completa y el proceso.</p>
+
+      <label for="accessCode" class="sr-only">Código de acceso</label>
+      <input id="accessCode" name="code" type="text" inputmode="latin" autocomplete="one-time-code" placeholder="Código de acceso" required>
+      <button class="btn btn--primary" type="submit">Ingresar</button>
+
+      <!-- OJO: sin pista/regla para que nadie deduzca el código -->
+      <div id="accessMsg" class="msg" aria-live="polite"></div>
+    </form>
+  </dialog>
+
+  <!-- ============ Lightbox ============ -->
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox__close" aria-label="Cerrar">×</button>
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <!-- ============ Modal de pedido (misma página) ============ -->
+  <div id="pedidoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="pedidoTitle" hidden>
+    <div class="modal-dialog">
+      <button class="modal-close" type="button" aria-label="Cerrar">×</button>
+      <h3 id="pedidoTitle">Solicitar</h3>
+      <p class="modal-note"><strong>Exclusivo:</strong> El artista te contactará personalmente para continuar tu pedido.</p>
+
+      <form id="pedidoForm" class="pedido-form">
+        <div class="row"><label>Obra / Producto</label><input type="text" id="obraNombre" name="obraNombre" readonly></div>
+        <div class="row"><label>Categoría</label><input type="text" id="obraCategoria" name="obraCategoria" readonly></div>
+        <input type="hidden" id="obraURL" name="obraURL">
+        <input type="hidden" id="obraThumb" name="obraThumb">
+        <div class="row"><label>Nombre de contacto</label><input type="text" id="contactoNombre" name="contactoNombre" required></div>
+        <div class="row"><label>Teléfono</label><input type="tel" id="contactoTelefono" name="contactoTelefono" required></div>
+        <div class="row"><label>Notas</label><textarea id="contactoNotas" name="contactoNotas" rows="4" placeholder="Cuéntanos detalles de tu pedido…"></textarea></div>
+        <div class="actions"><button class="btn btn--primary" type="submit">Enviar pedido</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ JS ============ -->
+  <!-- 1) JS inmersivo compartido (blur + acceso + lightbox + audio) -->
+  <script src="arte-immersive.js"></script>
+
+  <!-- 2) JS mínimo para el modal de compra -->
+  <script>
+    (function(){
+      const $ = s => document.querySelector(s);
+      const obra = (document.querySelector('meta[name="piece-name"]')?.content || 'Obra').trim();
+      const cat  = (document.querySelector('meta[name="piece-category"]')?.content || 'Óleos').trim();
+
+      const modal   = $('#pedidoModal');
+      const mClose  = modal.querySelector('.modal-close');
+      const form    = $('#pedidoForm');
+
+      document.addEventListener('click', (e)=>{
+        const btn = e.target.closest('[data-pedir], #openAccessSecondary');
+        if(!btn) return;
+        if(btn.id==='openAccessSecondary') return; // ese abre el modal de código
+
+        const type = btn.dataset.type; // obra | gift
+        $('#obraNombre').value    = (type === 'gift') ? `Tarjeta de regalo — ${obra} (Historia completa)` : obra;
+        $('#obraCategoria').value = cat;
+        $('#obraURL').value       = location.href;
+        $('#obraThumb').value     = 'assets/hero-atardecer-poster.jpg';
+        $('#contactoNotas').value = `Referido por: ${$('#obraNombre').value}. `;
+
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      });
+
+      mClose.addEventListener('click', ()=>{ modal.hidden = true; document.body.style.overflow = ''; });
+      modal.addEventListener('click', (e)=>{ if(e.target === modal){ modal.hidden = true; document.body.style.overflow = ''; } });
+
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        alert('¡Gracias! Tu solicitud fue registrada. El artista te contactará personalmente.');
+        form.reset();
+        modal.hidden = true;
+        document.body.style.overflow = '';
+      });
+
+      // Conecta el botón secundario con el modal de código (controlado por arte-immersive.js)
+      const openB = document.getElementById('openAccessSecondary');
+      openB?.addEventListener('click', ()=> document.getElementById('openAccess')?.click?.());
+    })();
+  </script>
+</body>
+</html>

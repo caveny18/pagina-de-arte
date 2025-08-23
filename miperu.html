@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mi Perú — Experiencia inmersiva</title>
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- (Opcional) tu hoja global -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Estilos puntuales de esta experiencia -->
+  <style>
+    :root{ --veil: rgba(0,0,0,.45); --blur: 14px; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:#0c0c0c; color:#eaeaea; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+
+    /* HERO */
+    .hero-full{ position:relative; height:92svh; min-height:540px; overflow:hidden; }
+    .hero-full video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hero-full .shade{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.25), rgba(0,0,0,.78)); }
+    .hero-copy{ position:absolute; inset:0; display:grid; place-content:center; text-align:center; padding:clamp(16px,3vw,48px); }
+    .hero-copy h1{ font-size:clamp(28px,5vw,64px); letter-spacing:.5px; margin:0 0 .4em; font-weight:800; }
+    .hero-copy p{ font-family:"Cormorant Garamond",serif; font-size:clamp(16px,2.3vw,22px); opacity:.9; margin:.25rem 0 1.25rem; }
+    .btn{ border:1px solid #fff4; color:#fff; background:transparent; padding:.8rem 1.2rem; border-radius:999px; backdrop-filter:saturate(140%) blur(6px); transition:.25s ease; text-decoration:none; display:inline-block; }
+    .btn:hover{ background:#ffffff1a; transform:translateY(-1px); }
+    .btn-solid{ background:#fff; color:#111; border-color:#fff; }
+    .btn-ghost{ background:transparent; color:#fff; border-color:#ffffff55; }
+
+    /* Secciones visibles (sin blur) */
+    .section{ padding:clamp(36px,5vw,80px) clamp(16px,5vw,90px); }
+    .muted{ opacity:.85; }
+    .teasers{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .teasers img{ width:100%; height:38svh; object-fit:cover; border-radius:14px; filter:grayscale(.1); }
+    @media (max-width:900px){ .teasers{ grid-template-columns:1fr 1fr; } .teasers img{ height:30svh; } }
+
+    /* Ficha simple (medidas + CTAs) */
+    .card-basic{ background:rgba(255,255,255,.03); border:1px solid #ffffff12; border-radius:16px; padding:18px; max-width:980px; margin:0 auto; }
+    .card-basic h2{ margin:.2rem 0 .6rem; font-size:clamp(22px,2.6vw,28px); }
+    .meta{ font-size:0.95rem; opacity:.85; margin:.25rem 0 1rem; }
+    .cta-row{ display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* Bloque bloqueado (borroso) */
+    .locked{ position:relative; }
+    .locked.is-blurred::after{
+      content:""; position:absolute; inset:0; backdrop-filter: blur(var(--blur)) saturate(120%);
+      background:linear-gradient(180deg,transparent,var(--veil));
+      pointer-events:none;
+    }
+    .works{ display:grid; gap:28px; }
+    .work{ display:grid; grid-template-columns: 1.2fr 1fr; gap:22px; align-items:center; background:rgba(255,255,255,.02);
+      border:1px solid #ffffff12; border-radius:18px; padding:18px; }
+    .work .media{ overflow:hidden; border-radius:14px; }
+    .work .media img{ width:100%; height:52svh; object-fit:cover; display:block; }
+    .work .copy h3{ margin:.2rem 0 .2rem; font-size:clamp(18px,2.6vw,28px); font-weight:800; }
+    .work .copy p{ margin:.5rem 0 0; line-height:1.6; }
+    @media (max-width:980px){ .work{ grid-template-columns:1fr; } .work .media img{ height:44svh; } }
+
+    /* Modal nativo */
+    dialog.modal{ border:none; padding:0; width:min(560px,92vw); background:#141414; color:#fff; border-radius:18px; }
+    .modal .inner{ padding:22px; }
+    .modal h3{ margin:0 0 .6rem; }
+    .modal p{ margin:.25rem 0 .9rem; }
+    .modal form{ display:grid; gap:12px; }
+    .modal input{ background:#1f1f1f; border:1px solid #ffffff1a; border-radius:12px; padding:.8rem .9rem; color:#fff; }
+    .modal .row{ display:flex; gap:10px; flex-wrap:wrap; }
+    .modal button,.modal a.btn{ padding:.7rem 1rem; border-radius:12px; border:1px solid #ffffff1a; background:#fff; color:#111; font-weight:600; }
+    .modal .btn-outline{ background:transparent; color:#fff; border-color:#ffffff2a; }
+    .modal .close{ position:absolute; top:6px; right:10px; background:transparent; border:none; color:#fff; font-size:22px; }
+    dialog::backdrop{ background:rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+    .sr{ position:absolute !important; height:1px; width:1px; overflow:hidden; white-space:nowrap; clip:rect(1px,1px,1px,1px); }
+  </style>
+</head>
+<body>
+<body class="world-locked">
+
+  <!-- HEADER FIJO (igual al de index.html) -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">YNES CABRERA</a>
+      <nav class="main-nav" aria-label="Principal">
+        <a href="escultura-ceramica.html">Escultura & Cerámica</a>
+        <a href="oleos.html">Óleos</a>
+        <a href="papel-agua.html">Papel & Agua</a>
+        <a class="cta" href="index.html#reservar">Reservar</a>
+      </nav>
+      <div class="search">
+        <input id="siteSearch" type="search" placeholder="Buscar obra…" aria-label="Buscar obra por nombre" autocomplete="off">
+        <ul id="searchResults" class="results" role="listbox" aria-label="Resultados de búsqueda"></ul>
+      </div>
+    </div>
+  </header>
+  <!-- FIN HEADER -->
+
+  <!-- ======= HERO visible ======= -->
+  <header class="hero-full" aria-label="Portada de la experiencia Mi Perú">
+    <video id="heroVid" autoplay muted loop playsinline preload="none"
+           poster="imagenes/papel-1.jpg">
+      <source src="videos/mi-peru-hero.mp4" type="video/mp4">
+    </video>
+    <div class="shade"></div>
+    <div class="hero-copy">
+      <h1>Mi Perú — Experiencia</h1>
+      <p class="muted">Serie en cartulina, lápiz y acuarela · 20×28 cm aprox.</p>
+      <button class="btn" id="openModalTop">Conocer más</button>
+    </div>
+  </header>
+
+  <!-- ======= TEASER visible ======= -->
+  <section class="section">
+    <div class="teasers" aria-label="Avances de la colección">
+      <img src="imagenes/papel-1.jpg" loading="lazy" decoding="async" alt="Teaser 1">
+      <img src="imagenes/papel-2.jpg" loading="lazy" decoding="async" alt="Teaser 2">
+      <img src="imagenes/papel-3.jpg" loading="lazy" decoding="async" alt="Teaser 3">
+    </div>
+  </section>
+
+  <!-- ======= FICHA (visible) con medidas + CTAs que vuelven a papel-agua ======= -->
+  <section class="section">
+    <article class="card-basic">
+      <h2>Colección: Mi Perú</h2>
+      <div class="meta">Técnica: lápiz y acuarela sobre cartulina · Medidas por obra: ~20 × 28 cm</div>
+      <p class="muted">
+        Una serie íntima que mezcla memoria, territorio y gesto. Si deseas comprar,
+        puedes hacerlo desde la categoría Papel & Agua.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="papel-agua.html">Comprar obra original</a>
+        <a class="btn btn-ghost" href="papel-agua.html">Comprar reproducción impresa</a>
+        <button class="btn" id="openModal">Conocer más (requiere acceso)</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ======= CONTENIDO BLOQUEADO (borroso) ======= -->
+  <section id="locked" class="locked is-blurred" aria-hidden="true">
+    <section class="section">
+      <h2 style="margin-top:0">Historias & proceso — Mi Perú</h2>
+      <div id="works" class="works"><!-- se rellena por JS --></div>
+    </section>
+  </section>
+
+  <!-- ======= MODAL CONTRASEÑA ======= -->
+  <dialog id="accessModal" class="modal" aria-labelledby="accessTitle">
+    <button class="close" aria-label="Cerrar">×</button>
+    <div class="inner">
+      <h3 id="accessTitle">Acceso exclusivo</h3>
+      <p class="muted">
+        Esta experiencia es privada. <strong>La contraseña la reciben quienes compran</strong> una
+        <strong>obra original</strong> o una <strong>reproducción impresa</strong> de la colección.
+      </p>
+      <form id="accessForm">
+        <label class="sr" for="accessCode">Contraseña</label>
+        <input id="accessCode" name="code" type="text" inputmode="text" autocomplete="one-time-code"
+               placeholder="Contraseña" required>
+        <div class="row">
+          <button type="submit">Ingresar</button>
+          <a class="btn btn-outline" href="papel-agua.html">Comprar ahora</a>
+          <button type="button" class="btn btn-outline" id="cancelModal">Cancelar</button>
+        </div>
+        <div id="accessMsg" class="muted" aria-live="polite" style="margin-top:.25rem"></div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Tu JS externo -->
+  <script src="miperu.js"></script>
+</body>
+</html>

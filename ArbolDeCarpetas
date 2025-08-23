@@ -1,0 +1,28 @@
+/ (raíz del sitio)
+├─ index.html
+├─ styles.css
+├─ videos/
+│  ├─ hero.mp4
+│  ├─ vid-escultura.mp4
+│  ├─ vid-oleo.mp4
+│  └─ vid-papel-agua.mp4
+├─ imagenes/
+│  ├─ poster.jpg
+│  ├─ post-escultura.jpg
+│  ├─ post-oleo.jpg
+│  ├─ post-papel-agua.jpg
+│  ├─ escultura-lotus-1.jpg
+│  ├─ escultura-lotus-2.jpg
+│  ├─ cupido-1.jpg
+│  ├─ cupido-2.jpg
+│  ├─ dragon-1.jpg
+│  └─ dragon-2.jpg
+├─ escultura-ceramica.html
+├─ oleos.html
+├─ papel-agua.html
+└─ cuadros/
+   ├─ imagenesarte/
+   │  ├─ angel-sobre-lotus-1.jpg
+   │  ├─ angel-sobre-lotus-2.jpg
+   │  └─ proceso-1.jpg
+   └─ angel-sobre-lotus.html
