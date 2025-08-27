@@ -915,3 +915,58 @@ fieldset.row label:hover {
   font-weight: 700;
   letter-spacing: 0.03em;
 }
+/* ===== Chips de canales de contacto (responsivo y táctil) ===== */
+.check-grid.chips{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 420px){
+  .check-grid.chips{
+    grid-template-columns: 1fr; /* una por línea en pantallas muy chicas */
+  }
+}
+
+/* chip base */
+.check-grid.chips > label{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  padding:.8rem .95rem;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.15);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: saturate(120%) blur(4px);
+  cursor:pointer;
+  min-height:44px;                         /* tamaño táctil mínimo */
+  transition: background .2s ease, border-color .2s ease, transform .1s ease;
+}
+
+/* estado hover / focus (accesible) */
+.check-grid.chips > label:hover{
+  background: rgba(255,255,255,.1);
+  transform: translateY(-1px);
+}
+.check-grid.chips input:focus-visible + span{
+  outline: 2px solid #66afe9;
+  outline-offset: 2px;
+}
+
+/* checkbox visible pero pequeño y alineado */
+.check-grid.chips input[type="checkbox"]{
+  width:18px; height:18px;
+  accent-color: #0aa;                     /* color del check (navegadores modernos) */
+}
+
+/* realce cuando está seleccionado (usando :has para navegadores modernos) */
+.check-grid.chips > label:has(input:checked){
+  border-color: #0aa;
+  background: rgba(0,170,170,.12);
+}
+
+/* si quieres soporte sin :has(), duplica feedback con sibling simple */
+.check-grid.chips > label input:checked{
+  outline: 2px solid rgba(0,170,170,.55);
+  outline-offset: 2px;                    /* fallback visual si falta :has */
+}
