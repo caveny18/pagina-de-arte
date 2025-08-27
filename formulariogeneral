@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reservar — Pedido</title>
+
+  <!-- Tipos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Tu stylesheet global (mantiene el mismo cabezal que index) -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Estilos mínimos del contenedor del formulario (puedes mover a styles.css) */
+    body{ background:#0b0b0e; color:#f4f4f5; font-family:Inter,system-ui,sans-serif; margin:0; }
+    main{ max-width:900px; margin:110px auto 60px; padding:0 16px; }
+    .card{ background:#11131a; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:22px; }
+    .card h2{ font-family:"Cormorant Garamond",serif; margin:.2rem 0 1rem; font-size:clamp(22px,3.6vw,34px); }
+    form{ display:grid; gap:14px; }
+    label{ font-weight:600; margin-bottom:6px; display:block; }
+    input, textarea, select{
+      width:100%; padding:12px; border-radius:12px; border:1px solid #23262f;
+      background:#0e1016; color:#fff;
+    }
+    .grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
+    .actions{ display:flex; gap:10px; justify-content:center; margin-top:8px; }
+    .btn{ border:0; border-radius:12px; padding:12px 20px; font-weight:800; cursor:pointer; }
+    .btn-primary{ background:#ff8a5c; color:#111; }
+    .btn-ghost{ background:transparent; color:#fff; border:1px solid #ffffff22; }
+    .msg{ text-align:center; min-height:1.2em; margin-top:8px; font-weight:700; }
+  </style>
+</head>
+<body data-theme="papel"><!-- o el theme que uses -->
+
+  <!-- HEADER FIJO (igual que tu index) -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">YNES CABRERA</a>
+      <nav class="main-nav" aria-label="Principal">
+        <a href="escultura-ceramica.html">Escultura & Cerámica</a>
+        <a href="oleos.html">Óleos</a>
+        <a href="papel-agua.html">Papel & Agua</a>
+        <a class="cta active" href="reservar.html">Reservar</a>
+      </nav>
+      <div class="search">
+        <input id="siteSearch" type="search" placeholder="Buscar obra…" aria-label="Buscar obra por nombre" autocomplete="off">
+        <ul id="searchResults" class="results" role="listbox" aria-label="Resultados de búsqueda"></ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- SOLO EL FORMULARIO -->
+  <main>
+    <div class="card">
+      <h2>Formulario de Pedido</h2>
+
+      <form id="pedidoForm" novalidate>
+        <!-- Autorrelleno (solo lectura) -->
+        <div class="grid">
+          <div>
+            <label for="obraNombre">Obra / Producto</label>
+            <input id="obraNombre" name="obraNombre" type="text" readonly>
+          </div>
+          <div>
+            <label for="obraCategoria">Categoría</label>
+            <input id="obraCategoria" name="obraCategoria" type="text" readonly>
+          </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="grid">
+          <div>
+            <label for="contactoNombre">Nombre completo</label>
+            <input id="contactoNombre" name="contactoNombre" type="text" required>
+          </div>
+          <div>
+            <label for="contactoPais">País</label>
+            <input id="contactoPais" name="contactoPais" type="text" required>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <label for="contactoTelefono">Teléfono / WhatsApp</label>
+            <input id="contactoTelefono" name="contactoTelefono" type="tel" required>
+          </div>
+          <div>
+            <label for="contactoEmail">Correo electrónico</label>
+            <input id="contactoEmail" name="contactoEmail" type="email" required>
+          </div>
+        </div>
+
+        <!-- Preferencias de contacto -->
+        <div>
+          <label for="medioContacto">Medio(s) de contacto preferido</label>
+          <select id="medioContacto" name="medioContacto" multiple>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="gmail">Gmail</option>
+            <option value="facebook">Facebook</option>
+            <option value="instagram">Instagram</option>
+          </select>
+          <small style="opacity:.75">Puedes seleccionar varios (Ctrl/Cmd + click).</small>
+        </div>
+
+        <!-- Notas -->
+        <div>
+          <label for="contactoNotas">Notas</label>
+          <textarea id="contactoNotas" name="contactoNotas" rows="4" placeholder="Cuéntanos detalles de tu pedido…"></textarea>
+        </div>
+
+        <!-- Ocultos útiles -->
+        <input type="hidden" id="obraTipo"   name="obraTipo">   <!-- original | tarjeta -->
+        <input type="hidden" id="obraURL"    name="obraURL">
+        <input type="hidden" id="obraThumb"  name="obraThumb">
+        <input type="hidden" id="referer"    name="referer">
+
+        <div class="actions">
+          <button id="btnEnviar" class="btn btn-primary" type="submit">Enviar pedido</button>
+          <button id="btnLimpiar" class="btn btn-ghost"  type="button">Limpiar</button>
+        </div>
+        <div id="msg" class="msg"></div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Firebase + Firestore (CDN) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+    // TU CONFIG (la que me diste)
+    const firebaseConfig = {
+      apiKey: "AIzaSyBD6ZQYAbY2ojjm0yiuCnkhXuT13ZnobWM",
+      authDomain: "arte-da57d.firebaseapp.com",
+      projectId: "arte-da57d",
+      storageBucket: "arte-da57d.firebasestorage.app",
+      messagingSenderId: "134306013865",
+      appId: "1:134306013865:web:96f862a046eb0562103fb8",
+      measurementId: "G-JJYJ884MKF"
+    };
+
+    // Init Firebase
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    // ====== Autorrelleno desde querystring ======
+    const params = new URLSearchParams(location.search);
+    const obra   = params.get('obra') || '';
+    const cat    = params.get('cat') || '';
+    const tipo   = params.get('tipo') || ''; // "original" | "tarjeta"
+    const thumb  = params.get('thumb') || ''; // opcional, si lo pasas
+
+    const obraNombreEl = document.getElementById('obraNombre');
+    const obraCatEl    = document.getElementById('obraCategoria');
+    const obraTipoEl   = document.getElementById('obraTipo');
+    const obraURLEl    = document.getElementById('obraURL');
+    const obraThumbEl  = document.getElementById('obraThumb');
+    const refererEl    = document.getElementById('referer');
+
+    obraNombreEl.value = (tipo === 'tarjeta' ? 'Tarjeta impresa — ' : '') + (obra || '—');
+    obraCatEl.value    = cat || '—';
+    obraTipoEl.value   = tipo || 'original';
+    obraURLEl.value    = document.referrer || location.origin;
+    obraThumbEl.value  = thumb || '';
+    refererEl.value    = new URL(document.referrer || location.href).pathname;
+
+    // ====== Envío a Firestore ======
+    const form = document.getElementById('pedidoForm');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const btnLimpiar = document.getElementById('btnLimpiar');
+    const msg = document.getElementById('msg');
+
+    btnLimpiar.addEventListener('click', ()=>{ form.reset(); msg.textContent=''; });
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      msg.textContent = '';
+      btnEnviar.disabled = true;
+
+      // Validación mínima
+      if(!form.contactoNombre.value || !form.contactoTelefono.value || !form.contactoEmail.value || !form.contactoPais.value){
+        msg.textContent = 'Completa los campos requeridos.';
+        btnEnviar.disabled = false;
+        return;
+      }
+
+      try{
+        const medios = Array.from(form.medioContacto.selectedOptions).map(o=>o.value);
+
+        await addDoc(collection(db,'pedidos'), {
+          obra: form.obraNombre.value,
+          categoria: form.obraCategoria.value,
+          tipo: form.obraTipo.value,      // original | tarjeta
+          url: form.obraURL.value,
+          thumb: form.obraThumb.value,
+          referer: form.referer.value,
+
+          nombre: form.contactoNombre.value,
+          telefono: form.contactoTelefono.value,
+          email: form.contactoEmail.value,
+          pais: form.contactoPais.value,
+          medio: medios,
+          notas: form.contactoNotas.value,
+
+          createdAt: new Date().toISOString()
+        });
+
+        msg.textContent = '¡Gracias! Tu pedido fue registrado correctamente.';
+        form.reset();
+      }catch(err){
+        console.error(err);
+        msg.textContent = 'Ocurrió un error al registrar tu pedido.';
+      }finally{
+        btnEnviar.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

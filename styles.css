@@ -695,3 +695,223 @@ a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius
   transform: scale(1.4);
   object-position: center;
 }
+/* ===== Reservar (form) ===== */
+.reservar-wrap{
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--stroke, rgba(255,255,255,.08));
+  border-radius: 16px;
+  padding: clamp(20px, 3.5vw, 32px);
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+}
+
+.reservar-wrap h3{
+  margin: 0 0 6px;
+  font-size: clamp(22px, 3vw, 32px);
+}
+
+.reservar-wrap p{
+  margin: 0 0 18px;
+  color: var(--muted, #b9bcc6);
+}
+
+.pedido-form{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.pedido-form .row{
+  display: grid;
+  gap: 6px;
+}
+
+.pedido-form label{
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+.pedido-form input[type="text"],
+.pedido-form input[type="tel"],
+.pedido-form input[type="email"],
+.pedido-form textarea{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke, rgba(255,255,255,.1));
+  background: #0f1117;
+  color: #fff;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.pedido-form input[readonly]{
+  opacity: .8;
+}
+
+.pedido-form input:focus,
+.pedido-form textarea:focus{
+  border-color: rgba(255,138,92,.6);
+  box-shadow: 0 0 0 3px rgba(255,138,92,.15);
+}
+
+.pedido-form fieldset.row{
+  border: 1px dashed var(--stroke, rgba(255,255,255,.12));
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.pedido-form fieldset legend{
+  padding: 0 6px;
+  color: var(--muted, #b9bcc6);
+}
+
+.pedido-form fieldset label{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 14px 6px 0;
+  font-weight: 500;
+}
+
+.pedido-form .actions{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.pedido-form .btn.btn--primary{
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+/* Responsive */
+@media (min-width: 720px){
+  .pedido-form{
+    grid-template-columns: 1fr 1fr;
+  }
+  .pedido-form .row:nth-child(1),
+  .pedido-form .row:nth-child(2),
+  .pedido-form fieldset.row,
+  .pedido-form .row:has(textarea),
+  .pedido-form .actions{
+    grid-column: 1 / -1; /* full width */
+  }
+}
+/* Agrupa las opciones de contacto en un grid ordenado */
+fieldset.row {
+  border: none;
+  padding: 0;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+fieldset.row legend {
+  font-weight: 600;
+  margin-bottom: 8px;
+  grid-column: 1 / -1; /* El título ocupa todo el ancho */
+}
+
+fieldset.row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-2);
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  cursor: pointer;
+  transition: background .25s;
+}
+
+fieldset.row label:hover {
+  background: rgba(255, 138, 92, 0.15); /* usa tu color acento */
+}
+/* Canvas de chispas: siempre detrás, sin bloquear clics */
+#bg-sparks{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;                /* detrás de todo tu contenido */
+  pointer-events: none;
+  /* Truco para integrarlo con tu estética BN/ámbar */
+  mix-blend-mode: screen;    /* “enciende” los colores sobre fondo oscuro */
+  opacity: .75;              /* ajusta intensidad global */
+}
+
+/* Si el usuario prefiere menos movimiento, escondemos/pausamos */
+@media (prefers-reduced-motion: reduce){
+  #bg-sparks{ display:none; }
+}
+:root {
+  --blur-locked: 14px;
+  --veil: rgba(0,0,0,.35);
+  --ring: rgba(255,255,255,.08);
+  --ring-2: rgba(255,255,255,.05);
+  --ring-b: rgba(0,0,0,.25);
+  --accent: #e6397d; /* rosado intenso inspirado en textilería peruana */
+}
+
+/* ===== Fondo inmersivo con motivos peruanos ===== */
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #000 0%, #111 40%, #222 100%);
+}
+
+/* Anillos como figuras inspiradas en tejidos andinos */
+.ring {
+  position:absolute;
+  border: 2px dashed var(--ring);
+  border-radius: 50%;
+  animation: slowspin linear infinite;
+  will-change: transform;
+  opacity: 0.5;
+}
+.ring.r1{ width: 65vmin; height: 65vmin; left:-12vmin; top:-12vmin; animation-duration: 55s; border-color: var(--accent);}
+.ring.r2{ width: 90vmin; height: 90vmin; right:-25vmin; top:15vmin; animation-duration: 75s; border-color: var(--ring-2);}
+.ring.r3{ width: 70vmin; height: 70vmin; left:20vmin; bottom:-20vmin; animation-duration: 60s; border-color: var(--accent);}
+@keyframes slowspin{ from{ transform: rotate(0deg)} to{ transform: rotate(360deg)} }
+
+/* ===== Hero ===== */
+.hero-min h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight:700;
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  background: linear-gradient(90deg, #fff 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-min p {
+  border-left: 4px solid var(--accent);
+  padding-left: 0.75rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #f3f3f3;
+}
+
+/* Botones */
+.btn-solid{ background: var(--accent); color:#fff; border:none; }
+.btn-ghost{ background: transparent; color:#fff; border:1px solid var(--accent); }
+.btn-soft{ background: rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.14);}
+
+/* Tarjetas borrosas */
+.section-card {
+  border: 2px solid var(--accent);
+  background: rgba(255,255,255,.05);
+}
+.section-card h3 {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}

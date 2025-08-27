@@ -4,9 +4,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Escultura & Cerámica — Ynes Cabrera</title>
+
+  <!-- Tipos -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Hoja global -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Toques mínimos -->
+  <style>
+    .id-badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);color:#fff;
+      padding:.25rem .5rem;border-radius:10px;font-size:.8rem;letter-spacing:.04em}
+    .product-media{position:relative}
+    .hover-overlay .btn-ghost{border:1px solid rgba(255,255,255,.5)}
+
+    /* Fila y botones de compra (igual que en óleos) */
+    .buy-row{display:flex; gap:8px; margin-top:.6rem; flex-wrap:wrap}
+    .buy-btn{
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      padding:.45rem .7rem; border-radius:999px; font-weight:600; cursor:pointer;
+      line-height:1; display:inline-flex; align-items:center; justify-content:center
+    }
+    .buy-btn:hover{filter:brightness(1.08)}
+  </style>
 </head>
 <body data-theme="ceramica">
 
@@ -15,7 +37,7 @@
     <div class="nav-wrap">
       <a class="brand" href="index.html" aria-label="Ir al inicio">YNES CABRERA</a>
       <nav class="main-nav" aria-label="Principal">
-        <a href="escultura-ceramica.html">Escultura & Cerámica</a>
+        <a class="active" href="escultura-ceramica.html">Escultura & Cerámica</a>
         <a href="oleos.html">Óleos</a>
         <a href="papel-agua.html">Papel & Agua</a>
         <a class="cta" href="index.html#reservar">Reservar</a>
@@ -27,107 +49,657 @@
     </div>
   </header>
 
-  <!-- Banner -->
-<header class="cat-hero">
-  <div class="cat-hero__media">
-    <video autoplay muted loop playsinline poster="imagenes/post-oleo.jpg">
-      <source src="videos/escultura.mov" type="video/mp4">
-      Tu navegador no soporta video en HTML5.
-    </video>
-  </div>
-  <div class="cat-hero__veil"></div>
-  <div class="cat-hero__title">Escultura y Cerámica</div>
-</header>
+  <!-- Banner con VIDEO -->
+  <header class="cat-hero">
+    <div class="cat-hero__media">
+      <video autoplay muted loop playsinline poster="imagenes/post-oleo.jpg">
+        <source src="videos/escultura.mov" type="video/mp4">
+      </video>
+    </div>
+    <div class="cat-hero__veil"></div>
+    <div class="cat-hero__title">ESCULTURA & CERÁMICA</div>
+  </header>
 
-  <!-- Grilla -->
   <main class="products">
-    <div class="product-grid">
-      <article class="product-card" 
-         data-obra="Ángel sobre Lotus" 
-         data-cat="Óleos" 
-         data-price="USD 450"
-         data-thumb="cuadros/imagenesarte/angel-sobre-lotus-1.jpg">
-  <a class="product-link" href="cuadros/angel-sobre-lotus.html">
-    <div class="product-media">
-      <img class="img-primary" src="cuadros/imagenesarte/angel-sobre-lotus-1.jpg" alt="Ángel sobre lotus — óleo — vista 1" loading="lazy">
-      <img class="img-alt"     src="cuadros/imagenesarte/angel-sobre-lotus-2.jpg" alt="Ángel sobre lotus — óleo — vista 2" loading="lazy">
+  <div class="product-grid">
 
-      <!-- overlay de hover con precio + PEDIR -->
-      <div class="hover-overlay">
-        <div class="hover-meta">
-          <span class="hover-price">USD 450</span>
-          <button class="btn-ghost btn-pedir" type="button">Pedir</button>
+    <!-- 01 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-subcat="Fogatas de mesa"
+             data-id="01" data-obra="Aliento de Amanecer">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/1p.png" alt="Fogata de mesa #01 — Aliento de Amanecer" loading="lazy" decoding="async">
+          <img class="img-alt"     src="imagenes/1p.png" alt="Fogata #01 — detalle" loading="lazy" decoding="async">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
         </div>
-      </div>
-    </div>
-
-    <div class="product-body">
-      <h3 class="product-title">ÁNGEL SOBRE LOTUS</h3>
-      <div class="product-meta">Óleo sobre lienzo. 40×50 cm.</div>
-    </div>
-  </a>
-</article>
-
-
-      <article class="product-card is-soldout">
-        <a class="product-link" href="obra/cupido-punta-roja.html">
-          <div class="badge">OFERTA</div>
-          <div class="product-media">
-            <img class="img-primary" src="imagenes/cupido-1.jpg" alt="Cupido punta roja — vista 1" loading="lazy">
-            <img class="img-alt"     src="imagenes/cupido-2.jpg" alt="Cupido punta roja — vista 2" loading="lazy">
-            <div class="soldout">SOLD OUT</div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#01</span> ALIENTO DE AMANECER</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
           </div>
-          <div class="product-body">
-            <h3 class="product-title">CUPIDO PUNTA ROJA</h3>
-            <div class="product-meta">Edición limitada numerada.</div>
-          </div>
-        </a>
-      </article>
+        </div>
+      </a>
+    </article>
 
-      <article class="product-card">
-        <a class="product-link" href="obra/dragon-rojo.html">
-          <div class="product-media">
-            <img class="img-primary" src="imagenes/dragon-1.jpg" alt="Dragón rojo — vista 1" loading="lazy">
-            <img class="img-alt"     src="imagenes/dragon-2.jpg" alt="Dragón rojo — vista 2" loading="lazy">
+    <!-- 02 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-subcat="Fogatas de mesa"
+             data-id="02" data-obra="Fogón de los Andes">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/2p.png" alt="Fogata de mesa #02 — Fogón de los Andes" loading="lazy" decoding="async">
+          <img class="img-alt"     src="imagenes/2p.png" alt="Fogata #02 — detalle" loading="lazy" decoding="async">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#02</span> FOGÓN DE LOS ANDES</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
           </div>
-          <div class="product-body">
-            <h3 class="product-title">ESCULTURA DRAGÓN ROJO</h3>
-            <div class="product-meta">Movimiento y contraste en rojo vivo.</div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 03 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="03" data-obra="Susurro de Cuzco">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/3p.png" alt="Fogata #03 — Susurro de Cuzco" loading="lazy">
+          <img class="img-alt"     src="imagenes/3p.png" alt="Fogata #03 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#03</span> SUSURRO DE CUZCO</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
           </div>
-        </a>
-      </article>
-    </div>
-    
+        </div>
+      </a>
+    </article>
+
+    <!-- 04 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="04" data-obra="Brasa de Luna">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/4p.png" alt="Fogata #04 — Brasa de Luna" loading="lazy">
+          <img class="img-alt"     src="imagenes/4p.png" alt="Fogata #04 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#04</span> BRASA DE LUNA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 05 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="05" data-obra="Costa y Neblina">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/5p.png" alt="Fogata #05 — Costa y Neblina" loading="lazy">
+          <img class="img-alt"     src="imagenes/5p.png" alt="Fogata #05 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#05</span> COSTA Y NEBLINA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 06 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="06" data-obra="Pampa Dorada">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/6p" alt="Fogata #06 — Pampa Dorada" loading="lazy">
+          <img class="img-alt"     src="imagenes/6p" alt="Fogata #06 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#06</span> PAMPA DORADA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 07 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="07" data-obra="Ecos de Quena">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/7p.png" alt="Fogata #07 — Ecos de Quena" loading="lazy">
+          <img class="img-alt"     src="imagenes/7p.png" alt="Fogata #07 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#07</span> ECOS DE QUENA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 08 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="08" data-obra="Noctilucas">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/8p.png" alt="Fogata #08 — Noctilucas" loading="lazy">
+          <img class="img-alt"     src="imagenes/8p.png" alt="Fogata #08 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#08</span> NOCTILUCAS</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 09 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="09" data-obra="Sombra de Huarango">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/9p.png" alt="Fogata #09 — Sombra de Huarango" loading="lazy">
+          <img class="img-alt"     src="imagenes/9p.png" alt="Fogata #09 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#09</span> SOMBRA DE HUARANGO</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 10 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="10" data-obra="Cielo de Altura">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/10p.png" alt="Fogata #10 — Cielo de Altura" loading="lazy">
+          <img class="img-alt"     src="imagenes/10p.png" alt="Fogata #10 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#10</span> CIELO DE ALTURA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 11 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="11" data-obra="Nácar y Carbón">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/11p.png" alt="Fogata #11 — Nácar y Carbón" loading="lazy">
+          <img class="img-alt"     src="imagenes/11p.png" alt="Fogata #11 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#11</span> NÁCAR Y CARBÓN</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 12 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="12" data-obra="Río de Piedra">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/12p.png" alt="Fogata #12 — Río de Piedra" loading="lazy">
+          <img class="img-alt"     src="imagenes/12p.png" alt="Fogata #12 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#12</span> RÍO DE PIEDRA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 13 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="13" data-obra="Mapa en Brasa">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/13.png" alt="Fogata #13 — Mapa en Brasa" loading="lazy">
+          <img class="img-alt"     src="imagenes/13p.png" alt="Fogata #13 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#13</span> MAPA EN BRASA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 14 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="14" data-obra="Hilo de Plata">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/14p.png" alt="Fogata #14 — Hilo de Plata" loading="lazy">
+          <img class="img-alt"     src="imagenes/14p.png" alt="Fogata #14 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#14</span> HILO DE PLATA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 15 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="15" data-obra="Mirador del Viento">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/15p.png" alt="Fogata #15 — Mirador del Viento" loading="lazy">
+          <img class="img-alt"     src="imagenes/15p.png" alt="Fogata #15 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#15</span> MIRADOR DEL VIENTO</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 16 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="16" data-obra="Piedra de Agua">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/16p.png" alt="Fogata #16 — Piedra de Agua" loading="lazy">
+          <img class="img-alt"     src="imagenes/16p.png" alt="Fogata #16 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#16</span> PIEDRA DE AGUA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 17 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="17" data-obra="Guardián del Valle">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/17p.png" alt="Fogata #17 — Guardián del Valle" loading="lazy">
+          <img class="img-alt"     src="imagenes/17p.png" alt="Fogata #17 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#17</span> GUARDIÁN DEL VALLE</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 18 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="18" data-obra="Fulgor Pacífico">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/18p.png" alt="Fogata #18 — Fulgor Pacífico" loading="lazy">
+          <img class="img-alt"     src="imagenes/18p.png" alt="Fogata #18 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#18</span> FULGOR PACÍFICO</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 19 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="19" data-obra="Silencio de Sal">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/19.png" alt="Fogata #19 — Silencio de Sal" loading="lazy">
+          <img class="img-alt"     src="imagenes/19.png" alt="Fogata #19 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#19</span> SILENCIO DE SAL</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 20 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="20" data-obra="Camino Infinito">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/20p.png" alt="Fogata #20 — Camino Infinito" loading="lazy">
+          <img class="img-alt"     src="imagenes/20p.png" alt="Fogata #20 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#20</span> CAMINO INFINITO</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 21 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="21" data-obra="Llama Interior">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/21p.png" alt="Fogata #21 — Llama Interior" loading="lazy">
+          <img class="img-alt"     src="imagenes/21p.png" alt="Fogata #21 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#21</span> LLAMA INTERIOR</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 22 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="22" data-obra="Tierra Encendida">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/22p.png" alt="Fogata #22 — Tierra Encendida" loading="lazy">
+          <img class="img-alt"     src="imagenes/22p.png" alt="Fogata #22 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#22</span> TIERRA ENCENDIDA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 23 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="23" data-obra="Altiplano Azul">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/23p" alt="Fogata #23 — Altiplano Azul" loading="lazy">
+          <img class="img-alt"     src="imagenes/23p" alt="Fogata #23 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#23</span> ALTIPLANO AZUL</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 24 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="24" data-obra="Brillo Nómada">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/24p" alt="Fogata #24 — Brillo Nómada" loading="lazy">
+          <img class="img-alt"     src="imagenes/24p" alt="Fogata #24 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#24</span> BRILLO NÓMADA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 25 -->
+    <article class="product-card accent-peru"
+             data-cat="Escultura & Cerámica" data-id="25" data-obra="Huayno de Fuego">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/25p" alt="Fogata #25 — Huayno de Fuego" loading="lazy">
+          <img class="img-alt"     src="imagenes/25p" alt="Fogata #25 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#25</span> HUAYNO DE FUEGO</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+    <!-- 26 -->
+    <article class="product-card accent-elegant"
+             data-cat="Escultura & Cerámica" data-id="26" data-obra="Última Centella">
+      <a class="product-link" href="miperu.html">
+        <div class="product-media">
+          <img class="img-primary" src="imagenes/26p" alt="Fogata #26 — Última Centella" loading="lazy">
+          <img class="img-alt"     src="imagenes/26p" alt="Fogata #26 — detalle" loading="lazy">
+          <div class="hover-overlay"><div class="hover-meta">
+            <button class="btn-ghost btn-ver" type="button">Conoce más de la pieza</button>
+          </div></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-title"><span class="id">#26</span> ÚLTIMA CENTELLA</h3>
+          <div class="product-meta">Fogata de mesa • edición única</div>
+          <div class="buy-row">
+            <button class="buy-btn" data-buy="original" type="button">Comprar obra</button>
+            <button class="buy-btn" data-buy="tarjeta"  type="button">Comprar tarjeta</button>
+          </div>
+        </div>
+      </a>
+    </article>
+
+  </div>
   </main>
 
-  <!-- Burbujas (opcional) -->
-<a class="bubble bubble-ig" href="https://instagram.com/" target="_blank" aria-label="Abrir Instagram">
-  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.75a1 1 0 100 2 1 1 0 000-2z"/></svg>
-</a>
-<button class="bubble bubble-contact" type="button" aria-haspopup="dialog" aria-controls="pedidoModal" aria-label="Contactar">
-  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21 15a2 2 0 01-2 2h-2a2 2 0 00-2 2v1H9v-1a2 2 0 00-2-2H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v9zM7 8h10v2H7V8z"/></svg>
-</button>
+  <!-- Burbujas (si ya las usas en el sitio) -->
+  <a class="bubble bubble-ig" href="https://www.instagram.com/galeriarte_k19?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Abrir Instagram">
+    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654 1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm6.5-.75a1 1 0 100 2 1 1 0 000-2z"/></svg>
+  </a>
 
-<!-- Modal de pedido -->
-<div id="pedidoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="pedidoTitle" hidden>
-  <div class="modal-dialog">
-    <button class="modal-close" type="button" aria-label="Cerrar">×</button>
-    <h3 id="pedidoTitle">Solicitar obra</h3>
-    <p class="modal-note"><strong>Exclusivo:</strong> El artista te contactará personalmente para continuar tu pedido.</p>
-    <form id="pedidoForm" class="pedido-form">
-      <div class="row"><label>Obra / Producto</label><input type="text" id="obraNombre" name="obraNombre" readonly></div>
-      <div class="row"><label>Categoría</label><input type="text" id="obraCategoria" name="obraCategoria" readonly></div>
-      <input type="hidden" id="obraURL" name="obraURL">
-      <input type="hidden" id="obraThumb" name="obraThumb">
-      <div class="row"><label>Nombre de contacto</label><input type="text" id="contactoNombre" name="contactoNombre" required></div>
-      <div class="row"><label>Teléfono</label><input type="tel" id="contactoTelefono" name="contactoTelefono" required></div>
-      <div class="row"><label>Notas</label><textarea id="contactoNotas" name="contactoNotas" rows="4" placeholder="Cuéntanos detalles de tu pedido…"></textarea></div>
-      <div class="actions"><button class="btn-solid" type="submit">Enviar pedido</button></div>
-    </form>
-  </div>
-</div>
+  <!-- JS global (buscador, etc.) -->
+  <script src="arte.js"></script>
 
-<script src="arte.js"></script>
+<script>
+  // Botones de compra → mandan a index#reservar con autorrelleno
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.buy-btn');
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopPropagation(); // muy importante si los botones están dentro del <a>
+
+    const card = btn.closest('.product-card');
+    if (!card) return;
+
+    const obra = card.dataset.obra || 'Obra';
+    const categoria = card.dataset.cat || 'Óleos';
+    const tipo = btn.getAttribute('data-buy') === 'tarjeta' ? 'tarjeta' : 'original';
+
+    const params = new URLSearchParams({ obra, categoria, tipo });
+    // params ANTES del hash (¡clave!)
+    location.href = `index.html?${params.toString()}#reservar`;
+  });
+</script>
+<script>
+  (function () {
+    const $ = s => document.querySelector(s);
+    const params = new URLSearchParams(location.search);
+
+    const obra = params.get('obra');
+    const categoria = params.get('categoria');
+    const tipo = params.get('tipo'); // "original" | "tarjeta"
+
+    // Si vienen params, autorellena
+    if (obra || categoria || tipo) {
+      if (obra)       $('#f_obra') && ($('#f_obra').value = decodeURIComponent(obra), $('#f_obra').readOnly = true);
+      if (categoria)  $('#f_categoria') && ($('#f_categoria').value = decodeURIComponent(categoria), $('#f_categoria').readOnly = true);
+      if (tipo)       $('#f_tipo') && ($('#f_tipo').value = tipo);
+
+      // foco en el primer campo editable
+      setTimeout(() => { $('#f_nombre')?.focus(); }, 60);
+    }
+
+    // Asegura que el usuario caiga en la sección #reservar
+    const anchor = $('#reservar');
+    if (anchor) {
+      // si no trae hash correcto, lo ajustamos
+      if (location.hash !== '#reservar') {
+        history.replaceState(null, '', location.pathname + location.search + '#reservar');
+      }
+      // y además hacemos scroll suave (por si el navegador no lo hace solo)
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  })();
+</script>
 
 </body>
 </html>

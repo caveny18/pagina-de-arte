@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es" data-theme="papel">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Papel & Agua — Ynes Cabrera</title>
+
+  <!-- Tipos -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Hoja global -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root{
+      --blur-locked: 14px;
+      --veil: rgba(0,0,0,.35);
+      --ring: rgba(255,255,255,.08);
+      --ring-2: rgba(255,255,255,.05);
+      --ring-b: rgba(0,0,0,.25);
+      --accent: #fff;
+      --inka: radial-gradient(100% 100% at 0% 0%, rgba(255,255,255,.06) 0, transparent 70%),
+              radial-gradient(100% 100% at 100% 0%, rgba(255,255,255,.06) 0, transparent 70%),
+              radial-gradient(120% 100% at 50% 100%, rgba(255,255,255,.03) 0, transparent 70%);
+    }
+
+    /* Header fijo (consistencia) */
+    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(8px)}
+
+    /* Fondo inmersivo: “aguadas” + filigrana textil sutil */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background:
+        var(--inka),
+        conic-gradient(from 180deg at 50% 40%, rgba(255,255,255,.025), transparent 40% 60%, rgba(255,255,255,.02));
+      opacity:.9;
+      z-index:0; pointer-events:none;
+    }
+    .ambient{
+      position: fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+    }
+    .ring{position:absolute; border: 2px solid var(--ring); border-radius: 50%;
+      filter: drop-shadow(0 0 20px var(--ring-b)); animation: slowspin linear infinite; will-change: transform;}
+    .ring.r1{ width: 60vmin; height: 60vmin; left:-10vmin; top:-10vmin; animation-duration: 48s; }
+    .ring.r2{ width: 90vmin; height: 90vmin; right:-25vmin; top:15vmin; animation-duration: 68s; border-color: var(--ring-2);}
+    .ring.r3{ width: 70vmin; height: 70vmin; left:20vmin; bottom:-20vmin; animation-duration: 58s;}
+    @keyframes slowspin{ from{ transform: rotate(0)} to{ transform: rotate(360deg)} }
+
+    /* Hero breve */
+    .hero-min{ position:relative; z-index:1; padding: clamp(64px, 8vw, 120px) 1.2rem 2rem; max-width:1100px; margin:0 auto;}
+    .hero-min .eyebrow{display:inline-block; letter-spacing:.12em; font-size:.8rem; opacity:.8; margin-bottom:.75rem}
+    .hero-min h1{ font-family:"Cormorant Garamond",serif; font-weight:600; line-height:1.05;
+      font-size:clamp(2.1rem,5.2vw,3.6rem); margin:0 0 1rem}
+    .hero-min p{ max-width:68ch; opacity:.92; font-size:clamp(1rem,1.2vw,1.125rem)}
+
+    .cta-row{ display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.25rem}
+    .btn-solid,.btn-ghost,.btn-soft{ border-radius:999px; padding:.7rem 1.1rem; font-weight:700; letter-spacing:.02em;
+      transition:.2s ease; cursor:pointer; text-align:center}
+    .btn-solid{ background:var(--accent); color:#111; border:none}
+    .btn-solid:hover{ filter:brightness(.92)}
+    .btn-ghost{ background:transparent; color:var(--accent); border:1px solid rgba(255,255,255,.45)}
+    .btn-ghost:hover{ background:rgba(255,255,255,.06)}
+    .btn-soft{ background:rgba(255,255,255,.08); color:var(--accent); border:1px solid rgba(255,255,255,.14)}
+    .btn-soft:hover{ filter:brightness(1.06)}
+
+    /* Zona bloqueada */
+    .locked-area{ position:relative; z-index:1; margin:2.25rem auto 4rem; max-width:1100px; padding:0 1.2rem}
+    .locked-wrap{ position:relative}
+    .locked-wrap.locked .blurred{ filter:blur(var(--blur-locked)); pointer-events:none; user-select:none}
+    .locked-wrap .veil{ display:none}
+    .locked-wrap.locked .veil{ display:block; position:absolute; inset:0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,.45) 100%); border-radius:18px}
+
+    .section-card{ background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
+      border-radius:18px; overflow:hidden; margin-bottom:1rem; backdrop-filter:saturate(120%) blur(6px)}
+    .section-card header{ padding:1rem 1.1rem .2rem}
+    .section-card h3{ margin:0; font-size:1.2rem}
+    .section-card .body{ padding:.5rem 1.1rem 1.25rem}
+
+    .media-block{ position:relative; overflow:hidden; border-radius:14px; aspect-ratio:16/9; margin:.75rem 0 0;
+      background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08)}
+    .media-block video{ width:100%; height:100%; object-fit:cover; object-position:center; display:block}
+
+    /* Modal */
+    .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:60 }
+    .modal[open]{ display:flex }
+    .modal .backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.6); backdrop-filter: blur(6px) }
+    .modal .dialog{ position:relative; z-index:1; width:min(520px,92vw);
+      background: rgba(223,217,217,.9); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:1.1rem}
+    .modal h4{ margin:.25rem 0 .5rem; font-size:1.25rem}
+    .modal p{ opacity:.85; margin:.25rem 0 .9rem}
+    .modal .row{ display:flex; gap:.5rem}
+    .modal input[type="password"]{ flex:1; border-radius:12px; border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06); color:#fff; padding:.7rem .8rem; font-size:1rem}
+    .modal .close-x{ position:absolute; right:.6rem; top:.35rem; font-size:1.4rem; opacity:.7; cursor:pointer; border:none; background:transparent; color:#fff}
+    .hint{ font-size:.9rem; opacity:.8 }
+
+    .mini-foot{ opacity:.7; text-align:center; padding:2rem 1rem; font-size:.9rem }
+    main{ position:relative; z-index:1 }
+  </style>
+</head>
+<body data-theme="papel">
+
+  <!-- Fondo inmersivo -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">YNES CABRERA</a>
+      <nav class="main-nav" aria-label="Principal">
+        <a href="escultura-ceramica.html">Escultura & Cerámica</a>
+        <a href="oleos.html">Óleos</a>
+        <a class="active" href="papel-agua.html">Papel & Agua</a>
+        <a class="cta" href="index.html#reservar">Reservar</a>
+      </nav>
+      <div class="search">
+        <input id="siteSearch" type="search" placeholder="Buscar obra…" aria-label="Buscar obra por nombre" autocomplete="off">
+        <ul id="searchResults" class="results" role="listbox" aria-label="Resultados de búsqueda"></ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sección emocional + 3 botones -->
+    <section class="hero-min">
+      <span class="eyebrow">COLECCIÓN · PAPEL & AGUA</span>
+      <h1>Trazos que cantan. Agua que recuerda.</h1>
+      <p>
+        Grafito y acuarela dialogan en piezas íntimas: rostros, tejidos, montes y símbolos
+        de nuestra memoria andina. Cada trazo respira como quena al amanecer; la tinta se
+        abre camino como río sobre cartulina. <strong>Papel & Agua</strong> es un
+        pequeño ritual de identidad.
+      </p>
+      <div class="cta-row">
+        <!-- Ajusta “obra=” si quieres un nombre específico -->
+        <a id="btnComprarAhora" class="btn-solid"
+           href="index.html?obra=Obra%20en%20Papel&categoria=Papel%20%26%20Agua&tipo=original#reservar">
+          Comprar ahora
+        </a>
+        <button class="btn-soft" id="btnConocerHistoria" type="button">Conocer historia</button>
+      </div>
+    </section>
+
+    <!-- Contenido bloqueado/borroso -->
+    <section class="locked-area">
+      <div class="locked-wrap locked" id="lockWrap">
+        <div class="veil" aria-hidden="true"></div>
+
+        <!-- Historia ancestral (papel & agua) -->
+        <article class="section-card blurred">
+          <header>
+            <h3>Relato de agua</h3>
+            <p class="hint">Una historia de montaña, plegaria y pigmento.</p>
+          </header>
+          <div class="body">
+            <p>
+              “La abuela molía el color con paciencia. El río prestaba su pulso,
+              y el papel guardaba la canción.” Esta serie recoge mitos, tejidos y
+              miradas que habitan nuestro imaginario peruano.
+            </p>
+            <div class="media-block">
+              <video muted playsinline controls preload="metadata" poster="imagenes/papel-historia.jpg" id="vidHistoria">
+                <source src="videos/papelyagua-historia.mov" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proceso de la artista -->
+        <article class="section-card blurred">
+          <header>
+            <h3>Proceso con la artista</h3>
+            <p class="hint">De la línea al aliento: capas de grafito y veladuras de agua.</p>
+          </header>
+          <div class="body">
+            <ol>
+              <li>Boceto a lápiz: mapa de luces y silencios.</li>
+              <li>Primera aguada: fija el clima y la dirección.</li>
+              <li>Capas de color: diálogo entre transparencia y gesto.</li>
+              <li>Secado y detalles: el último susurro de la pieza.</li>
+            </ol>
+            <div class="media-block">
+              <video muted playsinline controls preload="metadata" poster="imagenes/papel-proceso.jpg" id="vidProceso">
+                <source src="videos/papelyagua-proceso.mov" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cuidado y conservación -->
+        <article class="section-card blurred">
+          <header>
+            <h3>Cuidado & conservación</h3>
+            <p class="hint">Para que el papel siga cantando por muchos años.</p>
+          </header>
+          <div class="body">
+            <ul>
+              <li>Enmarcar con paspartú y vidrio UV.</li>
+              <li>Evitar luz solar directa y humedad alta.</li>
+              <li>Limpiar el vidrio con paño suave (sin rociar sobre el marco).</li>
+              <li>Guardar copias en sobre libre de ácido.</li>
+            </ul>
+            <div class="media-block">
+              <video muted playsinline controls preload="metadata" poster="imagenes/papel-cuidado.jpg" id="vidCuidado">
+                <source src="videos/papelyagua-cuidado.mov" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <p class="mini-foot">© Ynes Cabrera — Papel & Agua · Acuarela y grafito con identidad peruana</p>
+  </main>
+
+  <!-- Modal de contraseña -->
+  <dialog class="modal" id="passModal">
+    <div class="backdrop" data-close></div>
+    <div class="dialog">
+      <button class="close-x" type="button" aria-label="Cerrar" data-close>×</button>
+      <h4>Contenido privado</h4>
+      <p>Ingresa la contraseña para desbloquear la historia y los videos de la colección.</p>
+      <div class="row">
+        <input type="password" id="passField" placeholder="Contraseña" autocomplete="current-password" />
+        <button class="btn-solid" id="passOk" type="button">Desbloquear</button>
+      </div>
+      <p class="hint" id="passHint"></p>
+    </div>
+  </dialog>
+
+  <!-- JS de la página -->
+  <script>
+    const $ = (s,c=document)=>c.querySelector(s);
+
+    // Botones
+    const btnHistoria = $('#btnConocerHistoria');
+    const passModal   = $('#passModal');
+    const lockWrap    = $('#lockWrap');
+    const passField   = $('#passField');
+    const passOk      = $('#passOk');
+    const passHint    = $('#passHint');
+
+    // Abrir / cerrar modal
+    btnHistoria?.addEventListener('click', () => {
+      passModal.setAttribute('open','');
+      passField.value = ''; passHint.textContent = '';
+      setTimeout(()=>passField.focus(),50);
+    });
+    passModal.addEventListener('click', (e)=>{
+      if (e.target.hasAttribute('data-close')) passModal.removeAttribute('open');
+    });
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape' && passModal.hasAttribute('open')) passModal.removeAttribute('open');
+    });
+
+    // Validación
+    function unlockIfValid(){
+      const val = (passField.value||'').trim();
+      if (val === 'miperu6'){
+        lockWrap.classList.remove('locked');
+        passModal.removeAttribute('open');
+        ['#vidHistoria','#vidProceso','#vidCuidado'].forEach(id=>{
+          const v = $(id); try{ v && v.play && v.play(); }catch(_){}
+        });
+      } else {
+        passHint.textContent = 'Contraseña incorrecta. Intenta nuevamente.';
+      }
+    }
+    passOk.addEventListener('click', unlockIfValid);
+    passField.addEventListener('keydown', e=>{
+      if (e.key==='Enter') unlockIfValid();
+      if (e.key==='Escape') passModal.removeAttribute('open');
+    });
+
+    // Comprar ahora → ya está correcto en el href (query + #reservar)
+    // Si quieres construirlo por JS, descomenta:
+    // const btnComprar = $('#btnComprarAhora');
+    // btnComprar.addEventListener('click', (e)=>{
+    //   e.preventDefault();
+    //   const p = new URLSearchParams({obra:'Obra en Papel', categoria:'Papel & Agua', tipo:'original'});
+    //   location.href = `index.html?${p.toString()}#reservar`;
+    // });
+  </script>
+
+  <!-- Utilidades globales (buscador, etc.) -->
+  <script src="arte.js"></script>
+</body>
+</html>

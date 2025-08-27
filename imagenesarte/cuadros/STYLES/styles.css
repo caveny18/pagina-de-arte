@@ -102,3 +102,22 @@ body{
   .panel__media img{transition:none}
   [data-reveal]{transition:none}
 }
+/* La sección exclusiva se muestra, pero borrosa hasta que se desbloquee */
+.exclusive.is-blurred {
+  position: relative;
+}
+.exclusive.is-blurred::after{
+  content:"";
+  position:absolute; inset:0;
+  backdrop-filter: blur(14px) saturate(120%);
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.45));
+  pointer-events: none;
+}
+.exclusive.is-blurred::after{
+  content:"";
+  position:absolute; inset:0;
+  backdrop-filter: blur(14px) saturate(120%);
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.45));
+  pointer-events:none;
+}
+.exclusive{ position:relative; } /* para que el ::after cubra la sección */

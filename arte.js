@@ -194,3 +194,120 @@ const videoObserver = new IntersectionObserver((entries, obs) => {
 }, { threshold: 0.25 }); // se activa cuando al menos 25% del video es visible
 
 lazyVideos.forEach(video => videoObserver.observe(video));
+<script type="module">
+  // ===== Firebase (v10, módulos ES) =====
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // TU CONFIG (la que me diste)
+  const firebaseConfig = {
+    apiKey: "AIzaSyBD6ZQYAbY2ojjm0yiuCnkhXuT13ZnobWM",
+    authDomain: "arte-da57d.firebaseapp.com",
+    projectId: "arte-da57d",
+    storageBucket: "arte-da57d.firebasestorage.app",
+    messagingSenderId: "134306013865",
+    appId: "1:134306013865:web:96f862a046eb0562103fb8",
+    measurementId: "G-JJYJ884MKF"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  // ===== Helpers =====
+  const $ = (s, c=document) => c.querySelector(s);
+  const getParam = (k) => new URLSearchParams(location.search).get(k) || "";
+
+  // ===== Autorrelleno: obra/categoría/tipo =====
+  const obraMeta = document.querySelector('meta[name="piece-name"]')?.content || "";
+  const catMeta  = document.querySelector('meta[name="piece-category"]')?.content || "";
+
+  const obraField = $('#f_obra');
+  const catField  = $('#f_categoria');
+  const tipoField = $('#f_tipo');
+
+  // Permite pre-cargar por URL: ?obra=El%20León&cat=Óleos&tipo=tarjeta
+  const obraFromUrl = getParam('obra');
+  const catFromUrl  = getParam('cat');
+  const tipoFromUrl = getParam('tipo'); // "original" | "tarjeta"
+
+  const obraBase = obraFromUrl || obraMeta || "Obra";
+  const tipo     = (tipoFromUrl || "original").toLowerCase();
+
+  obraField.value = (tipo === "tarjeta")
+    ? `${obraBase} — Tarjeta impresa`
+    : `${obraBase} — Obra original`;
+
+  catField.value  = catFromUrl || catMeta || "Óleos";
+  tipoField.value = tipo;
+
+  // ===== Envío a Firestore =====
+  const form   = $('#reservaForm');
+  const status = $('#f_status');
+  const submit = $('#f_submit');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const medios = [...document.querySelectorAll('input[name="medio"]:checked')].map(x => x.value);
+
+    // payload a guardar
+    const data = {
+      obra: obraField.value.trim(),
+      categoria: catField.value.trim(),
+      tipo: tipoField.value.trim(),                  // original | tarjeta
+      nombre: $('#f_nombre').value.trim(),
+      telefono: $('#f_tel').value.trim(),
+      email: $('#f_email').value.trim(),
+      pais: $('#f_pais').value.trim(),
+      medioContacto: medios,                         // array
+      notas: $('#f_notas').value.trim(),
+      url: location.href,
+      referrer: document.referrer || 'directo',
+      fecha: serverTimestamp()
+    };
+
+    // validación simple
+    if (!data.nombre || !data.telefono || !data.pais) {
+      status.textContent = "Completa nombre, teléfono y país.";
+      return;
+    }
+
+    try {
+      submit.disabled = true;
+      status.textContent = "Enviando…";
+      await addDoc(collection(db, 'pedidos'), data);
+      status.textContent = "¡Listo! Tu solicitud fue enviada. Te contactaré pronto.";
+      // Resetea pero conserva obra/categoría/tipo
+      const obraKeep = obraField.value, catKeep = catField.value, tipoKeep = tipoField.value;
+      form.reset();
+      obraField.value = obraKeep; catField.value = catKeep; tipoField.value = tipoKeep;
+    } catch(err) {
+      console.error(err);
+      status.textContent = "Hubo un error al enviar. Intenta de nuevo.";
+    } finally {
+      submit.disabled = false;
+    }
+  });
+</script>
+// Botones de compra → van a index#reservar con autorrelleno
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.buy-btn');
+  if (!btn) return;
+
+  e.preventDefault();
+  const card = btn.closest('.product-card');
+  if (!card) return;
+
+  const obra = card.dataset.obra || 'Obra';
+  const categoria = card.dataset.cat || 'Óleos';
+  const tipo = btn.getAttribute('data-buy') === 'tarjeta' ? 'tarjeta' : 'original';
+
+  const params = new URLSearchParams({
+    obra: obra,
+    categoria: categoria,
+    tipo: tipo
+  });
+
+  // 🔥 Los params van antes del #reservar
+  location.href = `index.html?${params.toString()}#reservar`;
+});

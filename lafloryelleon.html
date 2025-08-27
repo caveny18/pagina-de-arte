@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es" data-theme="oleos">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La Flor y el León — Óleos · Ynes Cabrera</title>
+
+  <!-- Fuentes / hoja global -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root{
+      --blur-locked: 14px;
+      --ring: rgba(255,255,255,.08);
+      --ring-2: rgba(255,255,255,.05);
+      --ring-b: rgba(0,0,0,.25);
+      --accent: #fff;
+      --gold: #d7b56d;
+      --ink: rgba(255,255,255,.85);
+    }
+
+    /* Header fijo (consistencia) */
+    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(8px)}
+
+    /* Fondo inmersivo sutil */
+    .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .ring{position:absolute;border:2px solid var(--ring);border-radius:50%;
+      filter:drop-shadow(0 0 20px var(--ring-b));animation:spin linear infinite}
+    .r1{width:72vmin;height:72vmin;left:-12vmin;top:-10vmin;animation-duration:60s}
+    .r2{width:96vmin;height:96vmin;right:-28vmin;top:10vmin;border-color:var(--ring-2);animation-duration:82s}
+    .r3{width:80vmin;height:80vmin;left:10vmin;bottom:-24vmin;animation-duration:70s}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+    /* HERO video */
+    .art-hero{position:relative;z-index:1}
+    .art-hero__media{position:relative;aspect-ratio:16/9;overflow:hidden}
+    .art-hero__media video{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    .art-hero__veil{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.15) 60%, transparent)}
+    .art-hero__legend{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1rem 1.2rem 1.4rem}
+    .art-hero__title{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(2rem,5.2vw,3.2rem)}
+    .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.35rem}
+    .chip{border:1px solid rgba(255,255,255,.28);padding:.28rem .55rem;border-radius:999px;font-size:.85rem;opacity:.9}
+
+    /* Layout contenido */
+    main{position:relative;z-index:1}
+    .container{max-width:1100px;margin:0 auto;padding:1.25rem}
+    .lead{max-width:70ch;opacity:.9}
+
+    .cta-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+    .btn{border-radius:999px;padding:.7rem 1.1rem;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:.2s}
+    .btn--solid{background:var(--accent);color:#111;border:none}
+    .btn--solid:hover{filter:brightness(.92)}
+    .btn--soft{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2)}
+    .btn--soft:hover{filter:brightness(1.06)}
+    .btn--ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+    .btn--ghost:hover{background:rgba(255,255,255,.06)}
+
+    /* Bloques */
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;backdrop-filter:saturate(120%) blur(6px);overflow:hidden;margin-top:1rem}
+    .card header{padding:1rem 1rem .25rem}
+    .card .body{padding:.25rem 1rem 1.1rem}
+
+    /* Área privada borrosa */
+    .locked-wrap{position:relative;margin-top:1.2rem}
+    .locked-wrap.locked .blurred{filter:blur(var(--blur-locked));pointer-events:none;user-select:none}
+    .locked-wrap .veil{display:none}
+    .locked-wrap.locked .veil{display:block;position:absolute;inset:0;border-radius:18px;
+      background:linear-gradient(to bottom, transparent 0, rgba(0,0,0,.25) 50%, rgba(0,0,0,.45))}
+    .hint{opacity:.85}
+
+    /* Certificado (estilo sello/folio) */
+    .cert{--b:rgba(255,255,255,.14);background:rgba(255,255,255,.03);border:1px solid var(--b);
+      border-radius:16px;padding:1rem;position:relative;overflow:hidden}
+    .cert__marco{border:1px dashed var(--b);border-radius:12px;padding:1rem}
+    .cert__head{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+    .cert__title{font-family:"Cormorant Garamond",serif;font-size:1.6rem}
+    .cert__seal{border:2px solid var(--gold);color:var(--gold);border-radius:999px;padding:.35rem .6rem;font-weight:700}
+    .cert__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;margin-top:.8rem}
+    .cert__field{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:.6rem}
+    .cert__qr{aspect-ratio:1/1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;font-size:.9rem;opacity:.9}
+
+    /* Modal de contraseña */
+    dialog.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:60}
+    dialog[open]{display:flex}
+    .modal .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(6px)}
+    .modal .dialog{position:relative;z-index:1;width:min(520px,92vw);
+      background:rgba(25,25,25,.9);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:1.1rem}
+    .modal .close-x{position:absolute;right:.6rem;top:.35rem;font-size:1.4rem;opacity:.7;cursor:pointer;border:none;background:transparent;color:#fff}
+    .modal .row{display:flex;gap:.5rem;margin-top:.5rem}
+    .modal input[type="password"]{flex:1;border-radius:12px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);color:#fff;padding:.7rem .8rem;font-size:1rem}
+  </style>
+</head>
+<body data-theme="oleos">
+
+  <!-- Fondo inmersivo -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+  </div>
+
+  <!-- HEADER FIJO -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">YNES CABRERA</a>
+      <nav class="main-nav" aria-label="Principal">
+        <a href="escultura-ceramica.html">Escultura & Cerámica</a>
+        <a class="active" href="oleos.html">Óleos</a>
+        <a href="papel-agua.html">Papel & Agua</a>
+        <a class="cta" href="index.html#reservar">Reservar</a>
+      </nav>
+      <div class="search">
+        <input id="siteSearch" type="search" placeholder="Buscar obra…" aria-label="Buscar obra por nombre" autocomplete="off">
+        <ul id="searchResults" class="results" role="listbox" aria-label="Resultados de búsqueda"></ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO con VIDEO de la obra -->
+  <header class="art-hero">
+    <div class="art-hero__media">
+      <!-- ===== CAMBIA ESTE VIDEO PARA CADA OBRA ===== -->
+      <video autoplay muted loop playsinline poster="imagenesarte/cuadros/leon.jpg">
+        <source src="imagenesarte/cuadros/leon.jpg" type="img">
+        Tu navegador no soporta video HTML5.
+      </video>
+      <div class="art-hero__veil"></div>
+      <div class="art-hero__legend container">
+        <h1 class="art-hero__title">LA FLOR Y EL LEÓN</h1> <!-- Título de la obra -->
+        <div class="chips">
+          <span class="chip">Óleo sobre lienzo</span>
+          <span class="chip">60 × 80 cm</span>
+          <span class="chip">Original • USD 356</span>
+          <span class="chip">Tarjeta • USD 4</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Ficha pública (visible para todos) -->
+    <section class="card">
+      <header>
+        <h2 style="margin:0">Sobre la obra</h2>
+      </header>
+      <div class="body">
+        <p class="lead">
+         "Una flor nace en medio de la bruma, ligera, vulnerable, pero cargada de luz interior. Frente a ella, un león observa, imponente y eterno. La obra refleja el encuentro de dos fuerzas opuestas: la delicadeza que resiste y la fortaleza que protege. Entre ambos se teje un diálogo ancestral: la suavidad que no se quiebra y el poder que aprende a ser ternura. En cada trazo, en cada sombra, se revela la pregunta de nuestra propia vida: ¿qué hay en nosotros de flor? ¿qué hay de león?"
+        </p>
+
+        <div class="cta-row">
+          <!-- Comprar ahora → autorrellena y hace scroll al form del index -->
+          <a id="btnComprarAhora" class="btn btn--solid"
+              href="index.html?obra=La%20Flor%20y%20El%20León&categoria=%C3%93leos&tipo=original#reservar">
+            Comprar ahora
+          </a>
+
+          <!-- Desbloquear contenido privado (historia extendida / certificado) -->
+          <button id="btnConocerHistoria" class="btn btn--soft" type="button">Conocer historia</button>
+
+          <!-- Ver todas las dinámicas (externo o interno, ajusta el href) -->
+          <a class="btn btn--ghost" href="oleos.html" rel="noopener">Ver más óleos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENIDO PRIVADO (borroso hasta contraseña) -->
+    <section class="locked-wrap locked" id="lockWrap">
+      <div class="veil" aria-hidden="true"></div>
+
+      <!-- Historia extendida -->
+      <article class="card blurred">
+        <header><h3 style="margin:0">Historia de la pieza</h3></header>
+        <div class="body">
+          <p>
+            “La Dama” nace de apuntes rápidos al carboncillo. El óleo conserva esa primera
+            vibración y construye capas donde la mirada descansa y retorna. Cada borde es
+            un secreto pulido con paciencia.
+          </p>
+          <div class="media-block" style="margin-top:.75rem;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);aspect-ratio:16/9">
+            <!-- Puedes poner aquí un video corto del proceso de esta obra -->
+            <video id="vidProceso" controls muted playsinline preload="metadata" poster="imagenesarte/cuadros/dama.jpg">
+              <source src="videos/oleos/la-dama-proceso.mov" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cuidados y envío -->
+      <article class="card blurred">
+        <header><h3 style="margin:0">Cuidados y envío</h3></header>
+        <div class="body">
+          <ul>
+            <li>Evitar luz solar directa y humedad alta.</li>
+            <li>Marco y vidrio museo (opcional) a pedido.</li>
+            <li>Embalaje profesional; certificado y firma incluidos.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- CERTIFICADO DE AUTENTICIDAD (virtual) -->
+      <article class="card blurred">
+        <header><h3 style="margin:0">Certificado de Autenticidad</h3></header>
+        <div class="body">
+          <div class="cert">
+            <div class="cert__marco">
+              <div class="cert__head">
+                <div>
+                  <div class="cert__title">Certificado de Autenticidad</div>
+                  <small class="hint">Emitido por Ynes Cabrera · Registro interno</small>
+                </div>
+                <div class="cert__seal">Sello · YC</div>
+              </div>
+
+              <div class="cert__grid">
+                <div class="cert__field"><strong>Obra:</strong> La Dama</div>
+                <div class="cert__field"><strong>Técnica:</strong> Óleo sobre lienzo</div>
+                <div class="cert__field"><strong>Dimensiones:</strong> 60 × 40 cm</div>
+                <div class="cert__field"><strong>Año:</strong> 2025</div>
+                <div class="cert__field"><strong>Firma:</strong> Y. Cabrera (reverso)</div>
+                <div class="cert__field"><strong>ID de pieza:</strong> O-2025-001</div>
+                <div class="cert__qr">QR / hash de registro</div>
+                <div class="cert__field"><strong>Verificación:</strong> on-chain / archivo maestro</div>
+              </div>
+
+              <div class="cta-row" style="margin-top:.8rem">
+                <!-- si más adelante generas un PDF, apunta este href al archivo -->
+                <a class="btn btn--soft" href="#" onclick="alert('Pronto disponible como PDF');return false;">Descargar PDF</a>
+                <button class="btn btn--ghost" type="button" onclick="alert('Marcado como verificado')">Marcar como verificado</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <p class="hint" style="margin-top:1rem">© Ynes Cabrera — Óleos</p>
+  </main>
+
+  <!-- MODAL contraseña -->
+  <dialog class="modal" id="passModal">
+    <div class="backdrop" data-close></div>
+    <div class="dialog">
+      <button class="close-x" type="button" aria-label="Cerrar" data-close>×</button>
+      <h4 style="margin:.2rem 0 .5rem">Contenido privado</h4>
+      <p class="hint">Ingresa la contraseña para desbloquear la historia y el certificado.</p>
+      <div class="row">
+        <input type="password" id="passField" placeholder="Contraseña" autocomplete="current-password">
+        <button class="btn btn--solid" id="passOk" type="button">Desbloquear</button>
+      </div>
+      <p class="hint" id="passHint"></p>
+    </div>
+  </dialog>
+
+  <!-- JS de esta página -->
+  <script>
+    // ===== Helpers
+    const $ = (s,c=document)=>c.querySelector(s);
+
+    // ===== Comprar ahora → mantiene formato ?query + #reservar
+    // (El index debe leer location.search para autorrelleno y el hash para el scroll)
+    // Si cambias el título de la obra en esta página, ajusta también el href de #btnComprarAhora.
+    // Ejemplo de construcción dinámica:
+    // const params = new URLSearchParams({obra:'La Dama', categoria:'Óleos', tipo:'original'});
+    // location.href = `index.html?${params.toString()}#reservar`;
+
+    // ===== Desbloqueo por contraseña
+    const btnHistoria = $('#btnConocerHistoria');
+    const passModal   = $('#passModal');
+    const lockWrap    = $('#lockWrap');
+    const passField   = $('#passField');
+    const passOk      = $('#passOk');
+    const passHint    = $('#passHint');
+
+    btnHistoria?.addEventListener('click', ()=>{
+      passModal.setAttribute('open','');
+      passField.value = '';
+      passHint.textContent = '';
+      setTimeout(()=>passField.focus(), 50);
+    });
+
+    passModal.addEventListener('click', (e)=>{
+      if (e.target.hasAttribute('data-close')) passModal.removeAttribute('open');
+    });
+
+    function unlockIfValid(){
+      const val = (passField.value||'').trim();
+      if (val === 'miperu6'){ // ← misma clave que usas en otras páginas
+        lockWrap.classList.remove('locked');
+        passModal.removeAttribute('open');
+        // intenta reproducir el video de proceso automáticamente
+        const v = $('#vidProceso');
+        try { v && v.play && v.play(); } catch(_){}
+      } else {
+        passHint.textContent = 'Contraseña incorrecta. Intenta de nuevo.';
+      }
+    }
+    passOk.addEventListener('click', unlockIfValid);
+    passField.addEventListener('keydown', (e)=>{
+      if (e.key === 'Enter') unlockIfValid();
+      if (e.key === 'Escape') passModal.removeAttribute('open');
+    });
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape' && passModal.hasAttribute('open')) passModal.removeAttribute('open');
+    });
+  </script>
+
+  <!-- JS global (buscador, etc.) -->
+  <script src="arte.js"></script>
+</body>
+</html>
