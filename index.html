@@ -120,74 +120,36 @@
       </div>
     </section>
 
-    <!-- ============ RESERVAR (form real conectado a Firebase) ============ -->
-    <section id="reservar" class="section anchor">
-      <div class="series reservar-wrap">
-        <h3>Reservar</h3>
-        <p>¿Quieres una visita al taller o encargar una pieza? Déjame tus datos.</p>
+<!-- ============ HABLAR CON EL ARTISTA POR WHATSAPP (ELEGANTE) ============ -->
+<section id="reservar" class="section anchor" 
+         style="text-align:center; padding:80px 20px; background:#fafafa;">
+  <div class="series reservar-wrap" style="max-width:680px; margin:0 auto;">
+    
+    <h3 style="font-size:2em; margin-bottom:14px; color:#111; font-family:'Georgia',serif;">
+      Conecta con el artista
+    </h3>
+    <p style="max-width:540px; margin:0 auto 36px; font-size:1.15em; line-height:1.6; color:#444;">
+      Cada pieza tiene una historia y un corazón detrás.  
+      Escríbenos por <strong>WhatsApp</strong> y conversa directamente con el artista para conocer más 
+      o coordinar un encargo especial.
+    </p>
 
-        <form id="reservaForm" class="pedido-form" autocomplete="on">
-          <!-- Autorrelleno / solo lectura si viene por query -->
-          <div class="row">
-            <label for="f_obra">Obra / Producto</label>
-            <input id="f_obra" name="obra" type="text" placeholder="Ej.: Juntos / Tarjeta impresa" readonly>
-          </div>
-          <div class="row">
-        
-            <div class="row">
-  <label for="f_categoria">Categoría</label>
-  <select id="f_categoria" name="categoria" required>
-    <option value="">-- Selecciona una categoría --</option>
-    <option value="Óleos">Óleos</option>
-    <option value="Papel & Agua">Papel & Agua</option>
-    <option value="Escultura & Cerámica">Escultura & Cerámica</option>
-  </select>
-</div>
+    <a href="https://wa.me/message/4VXZPW2XW7JHJ1" target="_blank" rel="noopener"
+       style="display:inline-flex; align-items:center; gap:12px; padding:16px 34px;
+              background:#000; color:#fff; font-size:1.1em; font-weight:600;
+              border-radius:40px; text-decoration:none; letter-spacing:0.5px;
+              box-shadow:0 6px 20px rgba(0,0,0,.2);
+              transition:all .3s ease;">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
+           alt="WhatsApp" style="width:26px; height:26px; filter:invert(1);">
+      Hablar por WhatsApp
+    </a>
 
-          </div>
-          <!-- Tipo (original / tarjeta / visita / encargo) -->
-          <input id="f_tipo" name="tipo" type="hidden" value="encargo">
-
-          <!-- Datos del contacto -->
-          <div class="row">
-            <label for="f_nombre">Nombre completo</label>
-            <input id="f_nombre" name="nombre" type="text" required>
-          </div>
-          <div class="row">
-            <label for="f_tel">WhatsApp / Teléfono</label>
-            <input id="f_tel" name="telefono" type="tel" required>
-          </div>
-          <div class="row">
-            <label for="f_email">Correo</label>
-            <input id="f_email" name="email" type="email" placeholder="opcional">
-          </div>
-          <div class="row">
-            <label for="f_pais">País</label>
-            <input id="f_pais" name="pais" type="text" placeholder="Perú, México, España…" required>
-          </div>
-
-          <fieldset class="row">
-            <legend>¿Por dónde prefieres que te contacte el artista?</legend>
-            <div class="check-grid">
-              <label><input type="checkbox" name="medio" value="whatsapp"> WhatsApp</label>
-              <label><input type="checkbox" name="medio" value="email"> E-mail</label>
-              <label><input type="checkbox" name="medio" value="instagram"> Instagram</label>
-              <label><input type="checkbox" name="medio" value="facebook"> Facebook</label>
-            </div>
-          </fieldset>
-
-          <div class="row">
-            <label for="f_notas">Notas</label>
-            <textarea id="f_notas" name="notas" rows="4" placeholder="Cuéntame detalles del encargo, medidas, plazos, etc."></textarea>
-          </div>
-
-          <div class="actions">
-            <button id="f_submit" class="btn btn--primary" type="submit">Enviar pedido</button>
-            <span id="f_status" class="hint" style="margin-left:12px"></span>
-          </div>
-        </form>
-      </div>
-    </section>
+    <p style="margin-top:20px; font-size:0.95em; color:#777; font-style:italic;">
+      Respuesta directa y personalizada ✨
+    </p>
+  </div>
+</section>
 
     <!-- ACERCA DEL ARTISTA -->
     <section class="about-mw section" id="acerca">
@@ -198,7 +160,7 @@
             <img src="imagenes/ynes2.jpg" alt="Ynes Cabrera pintando">
             <img src="imagenes/ynes3.jpg" alt="Ynes Cabrera con una obra">
           </div>
-          <a class="mw-ig" href="https://instagram.com/" target="_blank" rel="noopener">
+          <a class="mw-ig" href="https://www.instagram.com/galeriarte_k19?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
             <span class="mw-ig__icon">📷</span> @ynes.cabrera
           </a>
         </figure>
@@ -261,13 +223,6 @@
       </svg>
     </a>
 
-    <!-- Ahora la burbuja de contacto lleva al formulario (sin modal) -->
-    <a class="bubble bubble-contact" href="#reservar" aria-label="Ir al formulario">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M21 15a2 2 0 01-2 2h-2a2 2 0 00-2 2v1H9v-1a2 2 0 00-2-2H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v9zM7 8h10v2H7V8z"/>
-      </svg>
-    </a>
-
   </main>
 
   <!-- JS global propio (si lo tienes) -->
@@ -292,93 +247,8 @@
     })();
   </script>
 
-  <!-- Firebase + Firestore (modular CDN) -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-    import { getFirestore, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBD6ZQYAbY2ojjm0yiuCnkhXuT13ZnobWM",
-      authDomain: "arte-da57d.firebaseapp.com",
-      projectId: "arte-da57d",
-      storageBucket: "arte-da57d.firebasestorage.app",
-      messagingSenderId: "134306013865",
-      appId: "1:134306013865:web:96f862a046eb0562103fb8",
-      measurementId: "G-JJYJ884MKF"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-
-    // Helpers
-    const $ = (s,c=document)=>c.querySelector(s);
-    const qs = (k)=> new URLSearchParams(location.search).get(k) || "";
-
-    // Autorrelleno desde ?obra=&cat=&tipo=
-    const obra = qs('obra');
-    const cat  = qs('cat');
-    const tipo = qs('tipo');
-
-    const fObra = $('#f_obra');
-    const fCat  = $('#f_categoria');
-    const fTipo = $('#f_tipo');
-
-    if (obra){ fObra.value = decodeURIComponent(obra); fObra.readOnly = true; }
-    else     { fObra.readOnly = false; fObra.placeholder = "Escribe la obra o producto"; }
-
-    if (cat){ fCat.value = decodeURIComponent(cat); fCat.readOnly = true; }
-    else    { fCat.readOnly = false; fCat.placeholder = "Selecciona o escribe la categoría"; }
-
-    if (tipo){ fTipo.value = tipo; }
-
-    // Enviar a Firestore
-    const form   = $('#reservaForm');
-    const btn    = $('#f_submit');
-    const status = $('#f_status');
-
-    form?.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      status.textContent = '';
-
-      // Recolectar “medios”
-      const medios = [...document.querySelectorAll('input[name="medio"]:checked')].map(i=>i.value);
-
-      // Construir payload
-      const payload = {
-        obra: fObra.value.trim() || null,
-        categoria: fCat.value.trim() || null,
-        tipo: fTipo.value || null,                // original | tarjeta | encargo | visita
-        nombre: $('#f_nombre').value.trim(),
-        telefono: $('#f_tel').value.trim(),
-        email: $('#f_email').value.trim() || null,
-        pais: $('#f_pais').value.trim(),
-        medios,                                   // ej: ["whatsapp","email"]
-        notas: $('#f_notas').value.trim() || null,
-
-        page_title: document.title,
-        page_url: location.href,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent,
-        created_at: serverTimestamp()
-      };
-
-      // Validaciones mínimas
-      if (!payload.nombre){ status.textContent = 'Escribe tu nombre.'; $('#f_nombre').focus(); return; }
-      if (!payload.telefono){ status.textContent = 'Indica tu WhatsApp o teléfono.'; $('#f_tel').focus(); return; }
-      if (!payload.pais){ status.textContent = 'Indica tu país.'; $('#f_pais').focus(); return; }
-
-      btn.disabled = true; btn.textContent = 'Enviando…';
-      try{
-        await addDoc(collection(db,'pedidos'), payload);
-        status.textContent = '¡Gracias! Recibimos tu pedido. Te contactaremos pronto.';
-        form.reset();
-      }catch(err){
-        console.error(err);
-        status.textContent = 'Hubo un error al guardar. Intenta nuevamente.';
-      }finally{
-        btn.disabled = false; btn.textContent = 'Enviar pedido';
-      }
-    });
+    
   </script>
 </body>
 </html>
